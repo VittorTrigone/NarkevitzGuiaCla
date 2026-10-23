@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Narkevitz · Guia do Clã</title>
+<link rel="icon" href="assets/NKV_Original_STexto.svg">
+<style>
+@font-face { font-family: "PiRhoHerak"; src: url("assets/HERAKLES.TTF") format("truetype"); }
+:root {
+  --vermelho: #8D0303; --vinho: #590000; --preto: #000; --branco: #fff;
+  --fundo: #0d0d0d; --texto: #e9e6e6; --suave: #9a9393; --linha: #2a2424;
+  --apoio: "Segoe UI", Arial, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; }
+body { background: var(--fundo); color: var(--texto); font: 16px/1.55 var(--apoio); }
+.pagina { min-height: 100vh; padding: 64px 7vw; border-bottom: 1px solid var(--linha); display: flex; flex-direction: column; gap: 28px; }
+.titulo { font-family: "PiRhoHerak"; text-transform: uppercase; letter-spacing: .06em; font-weight: 400; }
+.kv { margin-left: -.09em; } /* NKV: o V da fonte fica longe do K; aproxima para ficar igual ao N–K */
+h2.titulo { font-size: clamp(32px, 4vw, 52px); color: var(--branco); }
+h3 { font-size: 15px; letter-spacing: .12em; text-transform: uppercase; color: var(--suave); font-weight: 600; }
+.num { color: var(--vermelho); font-family: "PiRhoHerak"; font-size: 20px; letter-spacing: .1em; }
+p.lead { max-width: 760px; font-size: 18px; color: var(--texto); }
+.muted { color: var(--suave); font-size: 14px; }
+.grade { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+.cartao { border: 1px solid var(--linha); border-radius: 10px; overflow: hidden; background: #141111; }
+.cartao .area { aspect-ratio: 1; display: grid; place-items: center; }
+.cartao .area img { width: 86%; }
+.cartao .leg { padding: 12px 14px; font-size: 14px; }
+.cartao .leg b { display: block; color: var(--branco); }
+.claro { background: var(--branco); } .escuro { background: var(--preto); } .rubro { background: var(--vermelho); } .vinho { background: var(--vinho); }
+
+/* capa */
+.capa { justify-content: center; align-items: center; text-align: center; background: radial-gradient(circle at 50% 38%, #2a0505 0, #000 62%); }
+.capa img { width: min(440px, 70vw); }
+.capa h1 { font-family: "PiRhoHerak"; font-size: clamp(54px, 9vw, 120px); letter-spacing: .08em; font-weight: 400; color: var(--branco); line-height: 1; }
+.capa .sub { letter-spacing: .4em; text-transform: uppercase; color: var(--suave); font-size: 14px; }
+
+/* cores */
+.cores { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; }
+.cor { border-radius: 10px; overflow: hidden; border: 1px solid var(--linha); }
+.cor .amostra { height: 150px; }
+.cor .dados { padding: 14px; font-size: 14px; background: #141111; }
+.cor .dados b { font-size: 17px; color: var(--branco); display: block; margin-bottom: 4px; }
+.prop { display: flex; height: 46px; border-radius: 8px; overflow: hidden; border: 1px solid var(--linha); }
+.prop div { display: grid; place-items: center; font-size: 13px; font-weight: 600; }
+
+/* tipografia */
+.alfabeto { font-family: "PiRhoHerak"; font-size: clamp(30px, 4.4vw, 58px); line-height: 1.25; color: var(--branco); word-break: break-all; }
+.tipos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+.tipo { border: 1px solid var(--linha); border-radius: 10px; padding: 24px; background: #141111; }
+
+/* área de proteção */
+.protecao { --w: min(280px, 60vw); --x: calc(var(--w) * 70 / 471.5); display: inline-block; background: var(--branco); border-radius: 10px; padding: 0; }
+.protecao .zona { position: relative; padding: var(--x); }
+.protecao .logo { width: var(--w); outline: 2px dashed var(--vermelho); }
+.protecao .logo img { display: block; width: 100%; aspect-ratio: 471.5 / 416; }
+.protecao .x { position: absolute; display: grid; place-items: center; color: var(--vermelho); font: 700 15px var(--apoio); }
+.protecao .x.cima { top: 0; left: 0; right: 0; height: var(--x); } .protecao .x.lado { top: 0; bottom: 0; left: 0; width: var(--x); }
+
+/* incorretos */
+.erro .area { position: relative; }
+.erro .area::after { content: "✕"; position: absolute; top: 8px; right: 12px; color: #ff3b3b; font: 700 22px var(--apoio); }
+
+/* aplicações */
+.apps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.app { border: 1px solid var(--linha); border-radius: 10px; background: #141111; overflow: hidden; display: flex; flex-direction: column; }
+.app.largo { grid-column: 1 / -1; }
+.app .palco { height: 230px; display: grid; place-items: center; background: #0a0a0a; padding: 18px; }
+.app.largo .palco { height: auto; }
+.app.largo .banner { width: min(760px, 100%); }
+.app .palco.tags { align-content: center; gap: 12px; }
+.app .info { padding: 12px 16px 16px; display: grid; gap: 4px; }
+@media (max-width: 800px) { .apps { grid-template-columns: 1fr; } }
+.avatar { width: 160px; height: 160px; border-radius: 50%; background: radial-gradient(circle, #2a0505, #000 70%); display: grid; place-items: center; border: 3px solid var(--vermelho); }
+.avatar img { width: 82%; }
+.banner { aspect-ratio: 16/6; border-radius: 10px; background: linear-gradient(100deg, #000 40%, var(--vinho)); display: flex; align-items: center; gap: 4%; padding: 0 6%; overflow: hidden; }
+.banner img { height: 80%; }
+.banner span { font-family: "PiRhoHerak"; color: var(--branco); font-size: clamp(26px, 3.4vw, 46px); letter-spacing: .08em; }
+.camisa { width: 240px; }
+.tag { font-family: "Consolas", monospace; background: #1b1b1b; border: 1px solid var(--linha); border-radius: 8px; padding: 14px 18px; font-size: 18px; }
+.tag b { color: #ff2a2a; }
+ul.lista { padding-left: 20px; display: grid; gap: 6px; max-width: 760px; }
+.marca { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+.marca-texto { display: grid; gap: 26px; }
+.marca-simbolo { display: grid; place-items: center; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, #2a0505 0, #0d0d0d 68%); }
+.marca-simbolo img { width: 88%; }
+@media (max-width: 800px) { .marca { grid-template-columns: 1fr; } .marca-simbolo { max-width: 360px; justify-self: center; width: 100%; } }
+.duas { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
+.fala { border-left: 3px solid var(--vermelho); padding: 6px 0 6px 16px; }
+
+@page { size: A4 landscape; margin: 0; }
+@media print {
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .pagina { min-height: 0; height: 100vh; overflow: hidden; break-after: page; border: 0; padding: 32px 44px; gap: 16px; }
+  .capa { justify-content: center; }
+  .grade { grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .cartao .leg { padding: 8px 10px; font-size: 11px; }
+  .cor .amostra { height: 90px; }
+  p.lead { font-size: 15px; }
+  .tipo { padding: 12px 16px; } .tipos { gap: 12px; }
+  h2.titulo { font-size: 38px; }
+  .marca { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) !important; }
+  .marca-simbolo { width: 380px; height: 380px; max-width: none; aspect-ratio: auto; justify-self: center; }
+  .apps { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+  .duas, .tipos { grid-template-columns: 1fr 1fr !important; }
+  .pagina { gap: 10px; } .cartao .area { aspect-ratio: auto; height: 128px; } .cartao .leg { font-size: 10px; padding: 6px 9px; line-height: 1.35; } .cartao .area img { width: auto; height: 116px; }
+  .cores { grid-template-columns: repeat(5, 1fr); gap: 12px; } .cor .amostra { height: 70px; } .cor .dados { padding: 10px; font-size: 12px; }
+  .apps { gap: 12px; } .app .palco { height: 210px; padding: 10px; } .app .info { padding: 8px 12px 10px; } .app .info .muted { font-size: 11px; }
+  .avatar { width: 120px; height: 120px; } .camisa { width: 170px; } .app.largo .banner { width: 640px; aspect-ratio: 16 / 4.4; } .banner span { font-size: 34px; }
+  .alfabeto { font-size: 30px; }
+  .tipo [style*="font-size:90px"] { font-size: 50px !important; }
+  .tipo .titulo { font-size: 44px !important; }
+}
+</style>
+</head>
+<body>
+
+<section class="pagina capa">
+  <img src="assets/NKV_Original_STexto.svg" alt="Elmo da Narkevitz">
+  <h1>NARKEVITZ</h1>
+  <p class="sub">Guia do clã · v1.0 · 2026</p>
+</section>
+
+<section class="pagina">
+  <span class="num">01</span>
+  <h2 class="titulo">A marca</h2>
+  <div class="marca">
+    <div class="marca-texto">
+      <p class="lead"><b>Narkevitz</b>, ou <b>NKV</b>, é um clã: um grupo de amigos que joga, compete e se diverte junto. O símbolo é um <b>elmo de guerra com chifres</b>, que representa proteção, força e lealdade entre os membros.</p>
+      <div><h3>Essência</h3><ul class="lista"><li><b>Lealdade:</b> quem é NKV protege quem está do lado.</li><li><b>Força:</b> entrar para ganhar, sem drama.</li><li><b>Tradição:</b> o elmo marcado de batalhas mostra a história do clã.</li></ul></div>
+      <div><h3>Nome e abreviação</h3><ul class="lista"><li>Nome completo: <b>NARKEVITZ</b>, sempre em maiúsculas na fonte da marca.</li><li>Abreviação: <b>NKV</b>, usada como tag, prefixo ou sufixo. Na fonte da marca, sempre com o V aproximado do K (ver Tipografia).</li><li>Nunca escrever "Narkevits", "Narkevich" ou "NKZ".</li></ul></div>
+    </div>
+    <div class="marca-simbolo"><img src="assets/NKV_Original_STexto_Detalhes_BR.svg" alt=""></div>
+  </div>
+</section>
+
+<section class="pagina">
+  <span class="num">02</span>
+  <h2 class="titulo">Logo e versoes</h2>
+  <p class="lead">O logo é o elmo, sozinho ou com o nome NARKEVITZ embaixo. A versão principal é a vermelha com contorno preto e detalhes brancos. Use a versão que dá melhor contraste com o fundo.</p>
+  <h3>Com nome</h3>
+  <div class="grade">
+    <div class="cartao"><div class="area claro"><img src="assets/NKV_Original_Texto.svg" alt=""></div><div class="leg"><b>Principal</b>Contorno preto, detalhes brancos. Fundos claros.</div></div>
+    <div class="cartao"><div class="area claro"><img src="assets/NKV_Original_Dathalhes_PR.svg" alt=""></div><div class="leg"><b>Detalhes pretos</b>Fundos claros, impressão simples.</div></div>
+    <div class="cartao"><div class="area escuro"><img src="assets/NKV_Original_Texto_BR.svg" alt=""></div><div class="leg"><b>Fundo escuro</b>Contorno e nome brancos.</div></div>
+    <div class="cartao"><div class="area escuro"><img src="assets/NKV_Original_Dathalhes_BR.svg" alt=""></div><div class="leg"><b>Detalhes brancos</b>Fundos escuros.</div></div>
+    <div class="cartao"><div class="area rubro"><img src="assets/NKV_Original_Texto_PR.svg" alt=""></div><div class="leg"><b>Variação preta</b>Preto com contorno branco: fundos vermelhos, coloridos ou foto. Nunca em fundo branco.</div></div>
+  </div>
+  <h3>Só o elmo (símbolo)</h3>
+  <div class="grade">
+    <div class="cartao"><div class="area claro"><img src="assets/NKV_Original_STexto.svg" alt=""></div><div class="leg"><b>Símbolo principal</b>Avatar, ícone, selo.</div></div>
+    <div class="cartao"><div class="area rubro"><img src="assets/NKV_Original_STexto_PR.svg" alt=""></div><div class="leg"><b>Símbolo, variação preta</b>Preto com contorno branco: fundos vermelhos, coloridos ou foto. Nunca em fundo branco.</div></div>
+    <div class="cartao"><div class="area escuro"><img src="assets/NKV_Original_STexto_Detalhes_BR.svg" alt=""></div><div class="leg"><b>Símbolo, detalhes brancos</b>Fundos escuros.</div></div>
+    <div class="cartao"><div class="area claro"><img src="assets/NKV_Original_STexto_Detalhes_PR.svg" alt=""></div><div class="leg"><b>Símbolo, detalhes pretos</b>Fundos claros.</div></div>
+  </div>
+</section>
+
+<section class="pagina">
+  <span class="num">03</span>
+  <h2 class="titulo">Area de protecao e tamanho minimo</h2>
+  <div class="duas">
+    <div>
+      <div class="protecao"><div class="zona"><span class="x cima">x</span><span class="x lado">x</span><div class="logo"><img src="assets/NKV_Original_Texto.svg#svgView(viewBox(52,73,471.5,416))" alt=""></div></div></div>
+    </div>
+    <div>
+      <h3>Respiro</h3>
+      <p>O tracejado é o limite do logo. O espaço branco em volta é a <b>área de proteção</b>: no mínimo <b>x</b> de cada lado, onde <b>x = a altura das letras de NARKEVITZ</b>. Nada de texto, borda ou outra imagem dentro dela. No elmo sozinho, use a mesma medida (cerca de 15% da largura do elmo).</p><br>
+      <h3>Tamanho mínimo</h3>
+      <ul class="lista"><li>Com nome: <b>120 px</b> de largura na tela, <b>35 mm</b> impresso. Menor que isso, o nome fica ilegível.</li><li>Só o elmo: <b>32 px</b> na tela (ícone), <b>12 mm</b> impresso.</li><li>Abaixo disso, use o texto <b>NKV</b> na fonte da marca.</li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="pagina">
+  <span class="num">04</span>
+  <h2 class="titulo">Cores</h2>
+  <p class="lead">Vermelho, preto e branco. O vinho é só para o interior do elmo e detalhes de profundidade.</p>
+  <div class="cores">
+    <div class="cor"><div class="amostra" style="background:#8D0303"></div><div class="dados"><b>Vermelho Narkevitz</b>HEX #8D0303<br>RGB 141 · 3 · 3<br>CMYK 0 · 98 · 98 · 45</div></div>
+    <div class="cor"><div class="amostra" style="background:#000"></div><div class="dados"><b>Preto</b>HEX #000000<br>RGB 0 · 0 · 0<br>CMYK 0 · 0 · 0 · 100 (impressão: 60 · 40 · 40 · 100)</div></div>
+    <div class="cor"><div class="amostra" style="background:#fff"></div><div class="dados"><b>Branco</b>HEX #FFFFFF<br>RGB 255 · 255 · 255<br>CMYK 0 · 0 · 0 · 0</div></div>
+    <div class="cor"><div class="amostra" style="background:#590000"></div><div class="dados"><b>Vinho (apoio)</b>HEX #590000<br>RGB 89 · 0 · 0<br>CMYK 0 · 100 · 100 · 65<br><span class="muted">Interior do elmo na versão vermelha.</span></div></div>
+    <div class="cor"><div class="amostra" style="background:#0B0B0B;box-shadow:inset 0 0 0 1px #333"></div><div class="dados"><b>Preto apoio</b>HEX #0B0B0B<br>RGB 11 · 11 · 11<br>CMYK 0 · 0 · 0 · 96<br><span class="muted">Profundidade na variação preta, o papel do vinho na versão vermelha.</span></div></div>
+  </div>
+  <h3>Proporção de uso</h3>
+  <div class="prop"><div style="flex:47;background:#000;color:#fff">Preto 47%</div><div style="flex:30;background:#8D0303;color:#fff">Vermelho 30%</div><div style="flex:15;background:#fff;color:#000">Branco 15%</div><div style="flex:4;background:#590000;color:#fff">4%</div><div style="flex:4;background:#0B0B0B;color:#fff;border-left:1px solid #444">4%</div></div>
+  <p class="muted">O preto domina os fundos, o vermelho chama atenção e o branco é para texto e detalhes. Os dois apoios ficam com 4% cada: o <b>vinho</b> na versão vermelha e o <b>preto apoio</b> na variação preta, só para dar profundidade.</p>
+</section>
+
+<section class="pagina">
+  <span class="num">05</span>
+  <h2 class="titulo">Tipografia</h2>
+  <div class="tipos">
+    <div class="tipo">
+      <h3>Principal · PiRhoHerak Regular</h3>
+      <p class="alfabeto">ABCDEFGHIJKLM<br>NOPQRSTUVWXYZ<br>0123456789</p>
+      <p class="muted">Só em <b>MAIÚSCULAS</b>. Para o nome, títulos, tags e chamadas curtas. <b>A fonte não tem acento nem Ç</b>: nela, escreva sem acento (APLICACOES, PROTECAO). Se o acento for importante, use a fonte de apoio. Arquivo: <code>assets/HERAKLES.TTF</code>.</p>
+    </div>
+    <div class="tipo">
+      <h3>Apoio · Segoe UI / Arial</h3>
+      <p style="font-size:30px;color:#fff">Textos longos, regras do clã e avisos.</p>
+      <p>Regular para o texto corrido e <b>negrito</b> para destaque. A PiRhoHerak não serve para frases longas.</p>
+    </div>
+  </div>
+  <div class="tipos">
+    <div class="tipo" style="text-align:center"><h3>Errado · espaço padrão da fonte</h3><span style="font-family:PiRhoHerak;font-size:90px;color:#fff;letter-spacing:.06em">NKV</span><p class="muted">O V fica afastado do K.</p></div>
+    <div class="tipo" style="text-align:center;border-color:var(--vermelho)"><h3>Certo · sigla ajustada</h3><span style="font-family:PiRhoHerak;font-size:90px;color:#fff;letter-spacing:.06em">NK<span class="kv">V</span></span><p class="muted">Sempre que escrever <b>NKV</b> nesta fonte, aproxime o V do K em <b>−0,09 em</b> (−90 de kerning/tracking no par K–V, em programas de design) para o espaço ficar igual ao do N–K.</p></div>
+  </div>
+  <div class="tipo" style="text-align:center"><span class="titulo" style="font-size:clamp(40px,6vw,80px);color:#fff">NK<span class="kv">V</span></span><span class="titulo" style="font-size:clamp(40px,6vw,80px);color:var(--vermelho)"> · </span><span class="titulo" style="font-size:clamp(40px,6vw,80px);color:#fff">NARKEVITZ</span></div>
+</section>
+
+<section class="pagina">
+  <span class="num">06</span>
+  <h2 class="titulo">Usos incorretos</h2>
+  <div class="grade">
+    <div class="cartao erro"><div class="area claro"><img src="assets/NKV_Original_Texto.svg" alt="" style="transform:scaleX(1.35);width:70%"></div><div class="leg"><b>Não distorcer</b>Esticar ou achatar.</div></div>
+    <div class="cartao erro"><div class="area claro"><img src="assets/NKV_Original_Texto.svg" alt="" style="filter:hue-rotate(200deg)"></div><div class="leg"><b>Não trocar as cores</b>Só vermelho, preto e branco.</div></div>
+    <div class="cartao erro"><div class="area claro"><img src="assets/NKV_Original_Texto.svg" alt="" style="transform:rotate(-18deg)"></div><div class="leg"><b>Não girar</b>O elmo fica sempre reto.</div></div>
+    <div class="cartao erro"><div class="area vinho"><img src="assets/NKV_Original_Texto.svg" alt=""></div><div class="leg"><b>Não usar sem contraste</b>Vermelho em fundo vinho some.</div></div>
+    <div class="cartao erro"><div class="area claro"><img src="assets/NKV_Original_Texto.svg" alt="" style="filter:drop-shadow(12px 12px 6px rgba(0,0,0,.6)) blur(.4px)"></div><div class="leg"><b>Não pôr efeitos</b>Sombra, brilho, desfoque.</div></div>
+    <div class="cartao erro"><div class="area claro" style="background:repeating-linear-gradient(45deg,#c33 0 14px,#ffd23f 14px 28px)"><img src="assets/NKV_Original_Texto.svg" alt=""></div><div class="leg"><b>Não usar fundo poluído</b>Prefira fundo liso ou escurecido.</div></div>
+  </div>
+</section>
+
+<section class="pagina">
+  <span class="num">07</span>
+  <h2 class="titulo">Aplicacoes</h2>
+  <div class="apps">
+    <div class="app largo"><div class="palco"><div class="banner"><img src="assets/NKV_Original_STexto.svg" alt=""><span>NARKEVITZ</span></div></div>
+      <div class="info"><h3>Banner / capa</h3><p class="muted">Gradiente do preto para o vinho, elmo à esquerda e nome na fonte da marca. Para Discord, YouTube, Twitch e capas de rede social.</p></div></div>
+    <div class="app"><div class="palco"><div class="avatar"><img src="assets/NKV_Original_STexto.svg" alt=""></div></div>
+      <div class="info"><h3>Avatar</h3><p class="muted">Discord e Steam: elmo sozinho, fundo preto com brilho vinho e borda vermelha.</p></div></div>
+    <div class="app"><div class="palco">
+      <svg class="camisa" viewBox="0 0 240 240" role="img" aria-label="Camiseta preta com o logo">
+        <path d="M70 20 L100 10 Q120 28 140 10 L170 20 L220 55 L198 92 L178 80 L178 228 L62 228 L62 80 L42 92 L20 55 Z" fill="#111" stroke="#333" stroke-width="2"/>
+        <image href="assets/NKV_Original_STexto_Detalhes_BR.svg" x="72" y="42" width="96" height="96"/>
+        <text x="120" y="152" text-anchor="middle" fill="#fff" font-family="PiRhoHerak" font-size="15" letter-spacing="1">NARKEVITZ</text>
+      </svg></div>
+      <div class="info"><h3>Camiseta</h3><p class="muted">Peito: elmo (versão de fundo escuro) com o nome um pouco mais afastado que no logo. Costas: só o elmo, grande.</p></div></div>
+    <div class="app"><div class="palco tags"><p class="tag"><b>[NKV]</b> Vittor</p><p class="tag">Vittor <b>[NKV]</b></p></div>
+      <div class="info"><h3>Tag no jogo</h3><p class="muted">Prefixo ou sufixo, sempre entre colchetes e em maiúsculas.</p></div></div>
+  </div>
+</section>
+
+<section class="pagina">
+  <span class="num">08</span>
+  <h2 class="titulo">Tom de voz</h2>
+  <p class="lead">Curto, direto e com espírito de grupo. Pode zoar entre os membros, mas sem humilhar ninguém de fora.</p>
+  <div class="duas">
+    <div><h3>Assim</h3><br><p class="fala">"Bora, NKV. Hoje é vitória."</p><br><p class="fala">"Quem é Narkevitz não deixa ninguém pra trás."</p></div>
+    <div><h3>Assim não</h3><br><p class="fala" style="border-color:#555">Textão, ofensa a outros clãs, palavrão no nome do clã.</p></div>
+  </div>
+  <p class="muted" style="margin-top:auto">Narkevitz · Guia do clã v1.0 · uso interno. Fonte PiRhoHerak (PR Herakles) © Peter Rempel (castlesncrypts.com), licença linkware (uso pessoal).</p>
+</section>
+
+</body>
+</html>
