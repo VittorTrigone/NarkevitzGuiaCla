@@ -2,7 +2,7 @@
 
 Guia visual do clã **Narkevitz (NKV)**: logo e versões, área de proteção, cores, tipografia, usos incorretos, aplicações e tom de voz.
 
-- Site: abra `index.html` no navegador.
+- Site: https://vittortrigone.github.io/NarkevitzGuiaCla/
 - PDF: `Narkevitz - Guia do Cla.pdf`.
 
 ## Fonte
