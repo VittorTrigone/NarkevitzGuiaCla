@@ -6,7 +6,7 @@
 <title>Narkevitz · Guia do Clã</title>
 <link rel="icon" href="assets/NKV_Elmo.svg">
 <style>
-@font-face { font-family: "PiRhoHerak"; src: url("assets/HERAKLES.TTF") format("truetype"); }
+@font-face { font-family: "PiRhoHerak"; src: url("assets/PiRhoHerak_Extended_kern.ttf") format("truetype"); }
 :root {
   --vermelho: #C31C1E; --vinho: #651124; --realce: #EC4440; --preto: #000; --branco: #fff;
   --fundo: #0d0d0d; --texto: #e9e6e6; --suave: #9a9393; --linha: #2a2424;
@@ -16,7 +16,8 @@
 body { background: var(--fundo); color: var(--texto); font: 16px/1.55 var(--apoio); }
 .pagina { min-height: 100vh; padding: 64px 7vw; border-bottom: 1px solid var(--linha); display: flex; flex-direction: column; gap: 28px; }
 .titulo { font-family: "PiRhoHerak"; text-transform: uppercase; letter-spacing: .06em; font-weight: 400; }
-.kv { margin-left: -.09em; } /* NKV: o V da fonte fica longe do K; aproxima para ficar igual ao N–K */
+.kv { } /* o ajuste do K–V agora vem dentro da fonte (kerning) */
+.sem-kern { font-kerning: none; }
 h2.titulo { font-size: clamp(32px, 4vw, 52px); color: var(--branco); }
 h3 { font-size: 15px; letter-spacing: .12em; text-transform: uppercase; color: var(--suave); font-weight: 600; }
 .num { color: var(--vermelho); font-family: "PiRhoHerak"; font-size: 20px; letter-spacing: .1em; }
@@ -147,7 +148,7 @@ ul.lista { padding-left: 20px; display: grid; gap: 6px; max-width: 760px; }
 
 <section class="pagina">
   <span class="num">02</span>
-  <h2 class="titulo">Logo e versoes</h2>
+  <h2 class="titulo">Logo e versões</h2>
   <p class="lead">O logo é o elmo, sozinho ou com o nome NARKEVITZ embaixo. A versão principal é o elmo vermelho com contorno preto, olhos acesos e luz e sombra. Use a versão que dá melhor contraste com o fundo.</p>
   <h3>Com nome</h3>
   <div class="grade">
@@ -168,7 +169,7 @@ ul.lista { padding-left: 20px; display: grid; gap: 6px; max-width: 760px; }
 
 <section class="pagina">
   <span class="num">03</span>
-  <h2 class="titulo">Area de protecao e tamanho minimo</h2>
+  <h2 class="titulo">Área de proteção e tamanho mínimo</h2>
   <div class="duas">
     <div>
       <div class="protecao"><div class="zona"><span class="x cima">x</span><span class="x lado">x</span><div class="logo"><img src="assets/NKV_Elmo.svg#svgView(viewBox(52,43,895,886))" alt=""></div></div></div>
@@ -205,7 +206,7 @@ ul.lista { padding-left: 20px; display: grid; gap: 6px; max-width: 760px; }
     <div class="tipo">
       <h3>Principal · PiRhoHerak Regular</h3>
       <p class="alfabeto">ABCDEFGHIJKLM<br>NOPQRSTUVWXYZ<br>0123456789</p>
-      <p class="muted">Só em <b>MAIÚSCULAS</b>. Para o nome, títulos, tags e chamadas curtas. <b>A fonte não tem acento nem Ç</b>: nela, escreva sem acento (APLICACOES, PROTECAO). Se o acento for importante, use a fonte de apoio. Arquivo: <code>assets/HERAKLES.TTF</code>.</p>
+      <p class="muted">Só em <b>MAIÚSCULAS</b>. Para o nome, títulos, tags e chamadas curtas. A versão do clã tem os <b>acentos do português</b> (Á Ã Ç Õ…), acrescentados com permissão do autor. Arquivo: <code>assets/PiRhoHerak_Extended_kern.ttf</code>.</p>
     </div>
     <div class="tipo">
       <h3>Apoio · Segoe UI / Arial</h3>
@@ -214,8 +215,8 @@ ul.lista { padding-left: 20px; display: grid; gap: 6px; max-width: 760px; }
     </div>
   </div>
   <div class="tipos">
-    <div class="tipo" style="text-align:center"><h3>Errado · espaço padrão da fonte</h3><span style="font-family:PiRhoHerak;font-size:90px;color:#fff;letter-spacing:.06em">NKV</span><p class="muted">O V fica afastado do K.</p></div>
-    <div class="tipo" style="text-align:center;border-color:var(--vermelho)"><h3>Certo · sigla ajustada</h3><span style="font-family:PiRhoHerak;font-size:90px;color:#fff;letter-spacing:.06em">NK<span class="kv">V</span></span><p class="muted">Sempre que escrever <b>NKV</b> nesta fonte, aproxime o V do K em <b>−0,09 em</b> (−90 de kerning/tracking no par K–V, em programas de design) para o espaço ficar igual ao do N–K.</p></div>
+    <div class="tipo" style="text-align:center"><h3>Errado · sem o ajuste</h3><span class="sem-kern" style="font-family:PiRhoHerak;font-size:90px;color:#fff;letter-spacing:.06em">NKV</span><p class="muted">O V fica afastado do K.</p></div>
+    <div class="tipo" style="text-align:center;border-color:var(--vermelho)"><h3>Certo · sigla ajustada</h3><span style="font-family:PiRhoHerak;font-size:90px;color:#fff;letter-spacing:.06em">NK<span class="kv">V</span></span><p class="muted">A fonte do clã já aproxima o V do K sozinha (kerning embutido). Em programas de design, se usar a fonte original, ajuste −90 de kerning no par K–V.</p></div>
   </div>
   <div class="tipo" style="text-align:center"><span class="titulo" style="font-size:clamp(40px,6vw,80px);color:#fff">NK<span class="kv">V</span></span><span class="titulo" style="font-size:clamp(40px,6vw,80px);color:var(--vermelho)"> · </span><span class="titulo" style="font-size:clamp(40px,6vw,80px);color:#fff">NARKEVITZ</span></div>
 </section>
@@ -235,7 +236,7 @@ ul.lista { padding-left: 20px; display: grid; gap: 6px; max-width: 760px; }
 
 <section class="pagina">
   <span class="num">07</span>
-  <h2 class="titulo">Aplicacoes</h2>
+  <h2 class="titulo">Aplicações</h2>
   <div class="apps">
     <div class="app largo"><div class="palco"><div class="banner"><img src="assets/NKV_Elmo.svg" alt="" class="contorno"><span>NARKEVITZ</span></div></div>
       <div class="info"><h3>Banner / capa</h3><p class="muted">Gradiente do preto para o vinho, elmo à esquerda e nome na fonte da marca. Para Discord, YouTube, Twitch e capas de rede social.</p></div></div>
