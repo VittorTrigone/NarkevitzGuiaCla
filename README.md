@@ -7,5 +7,4 @@ Guia visual do clã **Narkevitz (NKV)**: logo e versões, área de proteção, c
 
 ## Fonte
 O nome e os títulos usam a fonte **PiRhoHerak (PR Herakles)**, © Peter Rempel, licença linkware (grátis para uso pessoal).
-Ela **não está neste repositório**, porque a licença não permite redistribuir. Para ver o site com a fonte certa,
-coloque o arquivo `HERAKLES.TTF` em `assets/`.
+O arquivo da fonte e a licença do autor estão em `assets/`.
